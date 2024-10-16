@@ -28,5 +28,5 @@ jobs:
       if: env.CHECKBOX_SET == 'true'
       run: |
         echo "Hello World"
-        pr_body=$(jq -r ".pull_request.body | sub(\"- \\[x\\] Your_Tickbox_Label\"; \"- [ ] Your_Tickbox_Label\")" "$GITHUB_EVENT_PATH")
+        pr_body=$("${{ github.event.changes.body.from }}" | sed s/-\s\[x\]\sYour_Tickbox_Label/-\s\[\ \]\sYour_Tickbox_Label/ )
         gh pr edit ${{ github.event.pull_request.number }} --body "$pr_body"
