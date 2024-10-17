@@ -16,6 +16,11 @@ jobs:
   check_tickbox:
     runs-on: ubuntu-latest
     steps:
+    - run: echo "${{ github.event.changes.body }}"
+    - run: echo "${{ github.event.changes.body.from }}"
+    - run: echo "${{ github.event.changes.base }}"
+    - run: echo "${{ github.event.changes.title }}"
+    - run: echo "${{ github.event.changes.title.from }}"
     - name: Check if tickbox is set
       id: check_tickbox
       run: |
